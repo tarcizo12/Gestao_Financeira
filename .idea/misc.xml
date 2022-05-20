@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/tarci/Desktop/Estudos/Projetos/Gestao_Financeira/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1945" />
+        <entry key="..\:/Users/tarci/Desktop/Estudos/Projetos/Gestao_Financeira/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1945" />
         <entry key="..\:/Users/tarci/Desktop/Estudos/Projetos/Gestao_Financeira/app/src/main/res/layout/activity_main.xml" value="0.10778985507246377" />
-        <entry key="..\:/Users/tarci/Desktop/Estudos/Projetos/Gestao_Financeira/app/src/main/res/layout/login_activity.xml" value="0.21" />
+        <entry key="..\:/Users/tarci/Desktop/Estudos/Projetos/Gestao_Financeira/app/src/main/res/layout/login_activity.xml" value="0.22" />
       </map>
     </option>
   </component>
