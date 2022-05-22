@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gestao_Financeiraapp">
         <activity
-            android:name="com.example.Activitys.LoginActivity"
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
