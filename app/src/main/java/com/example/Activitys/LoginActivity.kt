@@ -32,11 +32,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun openActivity(activitySelected: String) {
-        var it: Intent
+        var it: Intent?
 
         when(activitySelected){
             "Register" -> it = Intent(this,RegisterActivity::class.java)
-            else -> it = Intent(this,LoginActivity::class.java)
+            else -> it = null
         }
 
         startActivity(it)
