@@ -9,26 +9,44 @@
     android:foregroundTint="#FFFFFF"
     tools:context="LoginActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userIcon"
-        android:layout_width="194dp"
-        android:layout_height="173dp"
-        android:layout_marginTop="50dp"
-        android:background="@color/white"
-        android:src="@drawable/icon"
+
+    <TextView
+        android:id="@+id/viewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:backgroundTint="#00C11111"
+        android:fontFamily="monospace"
+        android:text="Login"
+        android:textColor="#2196F3"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.155"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintVertical_bias="0.129" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="356dp"
+        android:layout_height="25dp"
+        android:fontFamily="monospace"
+        android:text="Please login to your account"
+        android:textColor="#777777"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewLogin"
+        app:layout_constraintVertical_bias="0.045" />
 
     <EditText
         android:id="@+id/loginEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="416dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="E-mail"
@@ -39,17 +57,17 @@
         android:textColorHint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userIcon"
-        app:layout_constraintVertical_bias="0.15"
+
+        app:layout_constraintTop_toBottomOf="@+id/viewLogin"
+        app:layout_constraintVertical_bias="0.381"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/loginPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
         android:layout_marginTop="25dp"
         android:autofillHints=""
         android:ems="10"
@@ -60,37 +78,41 @@
         android:textColorHint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginEmail"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.036" />
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#03A9F4"
         android:text="LOGIN"
+        android:textSize="20sp"
+        app:iconTint="#AE1313"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.58" />
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="323dp"
+        android:layout_height="68dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="16dp"
         android:background="#00FBFBFB"
-        android:text="SIGN UP"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:text="Don't have an account? Register here!!"
+        android:textColor="#03A9F4"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
