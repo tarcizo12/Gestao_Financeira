@@ -21,7 +21,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(button: View?) {
-
         val buttonPressed = button?.id
 
         when(buttonPressed){

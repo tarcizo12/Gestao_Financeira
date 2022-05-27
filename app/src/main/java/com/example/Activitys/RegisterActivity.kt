@@ -1,5 +1,6 @@
 package com.example.Activitys
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -24,6 +25,7 @@ class RegisterActivity : AppCompatActivity() {
         registerPassword = findViewById(R.id.registerPassword)
         registerConfirmaPassword = findViewById(R.id.registerConfirmPassword)
         registerRegister = findViewById(R.id.registerRegister)
-
     }
+
+
 }
