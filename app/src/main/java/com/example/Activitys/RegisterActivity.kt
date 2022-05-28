@@ -1,11 +1,14 @@
 package com.example.Activitys
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import com.google.firebase.auth.FirebaseAuth
 import kotlin.math.log
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
@@ -16,6 +19,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var registerPassword: EditText
     private lateinit var registerConfirmPassword: EditText
     private lateinit var registerButtonConfirm: Button
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +32,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         registerConfirmPassword = findViewById(R.id.registerConfirmPassword)
         registerButtonConfirm = findViewById(R.id.registerButtonConfirm)
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         registerButtonConfirm.setOnClickListener(this)
     }
 
@@ -39,11 +48,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val password = registerPassword.text.toString().trim()
         val confirmPassword = registerConfirmPassword.text.toString().trim()
 
-        if(validateData(email, name, number, password, confirmPassword)) registerUser()
+        if(validateData(email, name, number, password, confirmPassword)){ registerUser(email,name,number,password) }
 
     }
 
-    private fun registerUser() {
+    private fun registerUser(email: String,name: String ,number: String,password: String) {
         TODO("Not yet implemented")
     }
 
