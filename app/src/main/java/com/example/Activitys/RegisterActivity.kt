@@ -48,7 +48,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val password = registerPassword.text.toString().trim()
         val confirmPassword = registerConfirmPassword.text.toString().trim()
 
-        if(validateData(email, name, number, password, confirmPassword)){ registerUser(email,name,number,password) }
+        validateData(email, name, number, password, confirmPassword)
 
     }
 
