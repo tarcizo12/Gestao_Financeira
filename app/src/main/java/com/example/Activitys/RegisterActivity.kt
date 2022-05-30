@@ -1,4 +1,5 @@
 package com.example.Activitys
+import Entitys.User
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-
+import com.google.firebase.database.FirebaseDatabase
 
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
@@ -31,6 +32,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         registerPassword = findViewById(R.id.registerPassword)
         registerConfirmPassword = findViewById(R.id.registerConfirmPassword)
         registerButtonConfirm = findViewById(R.id.registerButtonConfirm)
+
+
         auth = FirebaseAuth.getInstance()
 
 
@@ -42,13 +45,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-
         val email = registerEmail.text.toString().trim()
         val name = registerName.text.toString().trim()
         val number = registerMobileNumber.text.toString().trim()
         val password = registerPassword.text.toString().trim()
         val confirmPassword = registerConfirmPassword.text.toString().trim()
-
 
         val validate = validateData(email, name, number, password, confirmPassword)
         if(validate){ registerUser(email, name, number,password) }
@@ -59,6 +60,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    saveDataUsers()
                     Intent(this,LoginActivity::class.java)
                     Toast.makeText(baseContext, "Registro feito com sucesso", Toast.LENGTH_SHORT).show()
                     finish()
@@ -68,7 +70,14 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             }
     }
 
-    private fun saveDateUsers(){
+    private fun saveDataUsers(){
+        val email = registerEmail.text.toString().trim()
+        val name = registerName.text.toString().trim()
+        val number = registerMobileNumber.text.toString().trim()
+        val db = FirebaseDatabase.getInstance().getReference("Users")
+        val user = User(email,name,number)
+
+        db.child(name).setValue(user)
 
     }
 
