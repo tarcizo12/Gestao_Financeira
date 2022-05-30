@@ -1,15 +1,15 @@
 package com.example.Activitys
-
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.math.log
+
+
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -31,6 +31,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         registerPassword = findViewById(R.id.registerPassword)
         registerConfirmPassword = findViewById(R.id.registerConfirmPassword)
         registerButtonConfirm = findViewById(R.id.registerButtonConfirm)
+        auth = FirebaseAuth.getInstance()
 
 
     }
@@ -48,12 +49,23 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val password = registerPassword.text.toString().trim()
         val confirmPassword = registerConfirmPassword.text.toString().trim()
 
-        validateData(email, name, number, password, confirmPassword)
+
+        val validate = validateData(email, name, number, password, confirmPassword)
+        if(validate){ registerUser(email, name, number,password) }
 
     }
 
     private fun registerUser(email: String,name: String ,number: String,password: String) {
-        TODO("Not yet implemented")
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Intent(this,LoginActivity::class.java)
+                    Toast.makeText(baseContext, "Registro feito com sucesso", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+
+                }
+            }
     }
 
     private fun validateData(

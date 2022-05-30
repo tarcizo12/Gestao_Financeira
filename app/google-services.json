@@ -1,18 +1,27 @@
 {
   "project_info": {
     "project_number": "237924848963",
+    "firebase_url": "https://gestao-financeira-67d11-default-rtdb.firebaseio.com",
     "project_id": "gestao-financeira-67d11",
     "storage_bucket": "gestao-financeira-67d11.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:237924848963:android:64b113859d40b1ea174bf6",
+        "mobilesdk_app_id": "1:237924848963:android:214836325a510175174bf6",
         "android_client_info": {
           "package_name": "com.example.Activitys"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "237924848963-nk3b1kp54m18jir9tjece9kiv1tughji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.Activitys",
+            "certificate_hash": "14b46e4d1601c427e2318a016396efc45d272bfa"
+          }
+        },
         {
           "client_id": "237924848963-v8cvvs016leud8ml7pcm0rtjamrcjhuk.apps.googleusercontent.com",
           "client_type": 3
