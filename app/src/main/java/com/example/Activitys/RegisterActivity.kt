@@ -68,6 +68,10 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             }
     }
 
+    private fun saveDateUsers(){
+
+    }
+
     private fun validateData(
         email: String,
         name: String,
