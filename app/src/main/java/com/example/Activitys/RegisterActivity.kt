@@ -78,7 +78,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
 
         val db = FirebaseDatabase.getInstance().getReference("Users")
-        val user = User(email,name,number)
+
+        val user = User(name,number,email)
 
         db.child(name).setValue(user)
 
