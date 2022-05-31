@@ -52,11 +52,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val confirmPassword = registerConfirmPassword.text.toString().trim()
 
         val validate = validateData(email, name, number, password, confirmPassword)
-        if(validate){ registerUser(email, name, number,password) }
+        if(validate){ registerUser(email, name) }
 
     }
 
-    private fun registerUser(email: String,name: String ,number: String,password: String) {
+    private fun registerUser(email: String,password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -64,8 +64,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     Intent(this,LoginActivity::class.java)
                     Toast.makeText(baseContext, "Registro feito com sucesso", Toast.LENGTH_SHORT).show()
                     finish()
-                } else {
 
+                } else {
+                    registerEmail.error = "Email já cadastrado como usuário"
                 }
             }
     }
@@ -74,6 +75,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val email = registerEmail.text.toString().trim()
         val name = registerName.text.toString().trim()
         val number = registerMobileNumber.text.toString().trim()
+
+
         val db = FirebaseDatabase.getInstance().getReference("Users")
         val user = User(email,name,number)
 
