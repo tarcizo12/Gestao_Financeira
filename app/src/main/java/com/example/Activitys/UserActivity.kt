@@ -10,6 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
@@ -28,8 +31,9 @@ class UserActivity : AppCompatActivity() {
     private lateinit var userTextRegisterRecipe: TextView
     private lateinit var userTextRegisterExpense: TextView
     private lateinit var userTextDispensesAndExpenses: TextView
-    private lateinit var userLoged: Firebase
+    private lateinit var dbInstance: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,19 +56,30 @@ class UserActivity : AppCompatActivity() {
 
 
         auth = Firebase.auth
+        dbInstance = FirebaseDatabase.getInstance()
+
+
     }
 
     override fun onStart() {
         super.onStart()
-
-        if (auth.currentUser != null) {
-            val userId = auth.currentUser!!.email.toString().split("@")[0]
-            val db = FirebaseDatabase.getInstance().getReference("users")
-                .child(userId)
-                .child("name").get()
-                .addOnSuccessListener {
-                    userWelcome.text = "Seja bem vindo ${it.value}"
+        val userRefs = dbInstance.getReference("users")
+        userRefs
+            .orderByChild("email").equalTo(auth.currentUser?.email)
+            .addChildEventListener(object: ChildEventListener{
+                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                    
                 }
+
+                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
+
+                override fun onChildRemoved(snapshot: DataSnapshot) {}
+
+                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        if (auth.currentUser != null) {
 
         } else {
 

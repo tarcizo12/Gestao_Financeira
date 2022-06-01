@@ -47,6 +47,23 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             R.id.loginButton -> loginUser()
         }
 
+
+    }
+
+    private fun  validateData(email: String, password: String): Boolean {
+        var confirmedData = true
+
+        if (email.isEmpty()) {
+            mUserEmail.error = "Coloque um email válido"
+            confirmedData = false
+        }
+
+        if (password.isEmpty()) {
+            mUserPassword.error = "Coloque uma senha válida"
+            confirmedData = false
+        }
+
+        return confirmedData
     }
 
 
@@ -54,13 +71,21 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val email = mUserEmail.text.trim().toString()
         val password = mUserPassword.text.trim().toString()
 
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                startActivity(Intent(this, UserActivity::class.java))
-                Toast.makeText(baseContext, "Seja bem vindo ", Toast.LENGTH_SHORT).show()
-                finish()
-            } else {
+        if(validateData(email,password)){
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    startActivity(Intent(this, UserActivity::class.java))
+                    Toast.makeText(baseContext, "Seja bem vindo ", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Log.i("taskError",task.exception.toString())
+                    try { }catch(e: com.google.firebase.auth.FirebaseAuthInvalidUserException){
+                        mUserEmail.error = "Email nao cadastrado"
+                    }
+                }
             }
+        }else{
+            Toast.makeText(baseContext, "Por favor, verificar credenciais", Toast.LENGTH_SHORT).show()
         }
 
     }
