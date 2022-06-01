@@ -78,10 +78,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(baseContext, "Seja bem vindo ", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    Log.i("taskError",task.exception.toString())
-                    try { }catch(e: com.google.firebase.auth.FirebaseAuthInvalidUserException){
-                        mUserEmail.error = "Email nao cadastrado"
-                    }
+                    //Tratar erros posteriormente
                 }
             }
         }else{

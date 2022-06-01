@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
-class UserActivity : AppCompatActivity() {
+class UserActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var userView: View
     private lateinit var userProfilePicture: ImageView
 
@@ -33,6 +33,7 @@ class UserActivity : AppCompatActivity() {
     private lateinit var userTextDispensesAndExpenses: TextView
     private lateinit var dbInstance: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
+    private lateinit var userId: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +48,7 @@ class UserActivity : AppCompatActivity() {
         userMoney = findViewById(R.id.userMoney)
 
         userButtonRegisterRecipe = findViewById(R.id.userButtonRegisterRecipe)
+        userButtonRegisterRecipe.setOnClickListener(this)
         userButtonRegisterExpense = findViewById(R.id.userButtonRegisterExpense)
         userButtonRecipesAndExpenses = findViewById(R.id.userButtonRecipesAndExpenses)
 
@@ -70,9 +72,9 @@ class UserActivity : AppCompatActivity() {
                 .orderByChild("email").equalTo(auth.currentUser?.email)
                 .addChildEventListener(object: ChildEventListener{
                     override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-
+                        userId = snapshot.key!!
                         val setNameUser = snapshot.child("name").value.toString()
-                        val setMoneyUser = snapshot.child("revenue").value.toString()
+                        val setMoneyUser = snapshot.child("totalMoney").value.toString()
 
                         userWelcome.text =  "Seja bem vindo $setNameUser"
                         userMoney.text =  "R$ $setMoneyUser"
@@ -90,6 +92,10 @@ class UserActivity : AppCompatActivity() {
         } else {
 
         }
+
+    }
+
+    override fun onClick(p0: View?) {
 
     }
 }
