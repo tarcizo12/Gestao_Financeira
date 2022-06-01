@@ -63,24 +63,30 @@ class UserActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val userRefs = dbInstance.getReference("users")
-        userRefs
-            .orderByChild("email").equalTo(auth.currentUser?.email)
-            .addChildEventListener(object: ChildEventListener{
-                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                    
-                }
 
-                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
-
-                override fun onChildRemoved(snapshot: DataSnapshot) {}
-
-                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
-
-                override fun onCancelled(error: DatabaseError) {}
-            })
         if (auth.currentUser != null) {
+            val userRefs = dbInstance.getReference("users")
+            userRefs
+                .orderByChild("email").equalTo(auth.currentUser?.email)
+                .addChildEventListener(object: ChildEventListener{
+                    override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
 
+                        val setNameUser = snapshot.child("name").value.toString()
+                        val setMoneyUser = snapshot.child("revenue").value.toString()
+
+                        userWelcome.text =  "Seja bem vindo $setNameUser"
+                        userMoney.text =  "R$ $setMoneyUser"
+
+                    }
+
+                    override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
+
+                    override fun onChildRemoved(snapshot: DataSnapshot) {}
+
+                    override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
+
+                    override fun onCancelled(error: DatabaseError) {}
+                })
         } else {
 
         }

@@ -79,14 +79,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val email = registerEmail.text.toString().trim()
         val name = registerName.text.toString().trim()
         val number = registerMobileNumber.text.toString().trim()
-        val userReference = FirebaseDatabase.getInstance().getReference("user")
-        val key = userReference.push().key ?: ""
-
-
         val db = FirebaseDatabase.getInstance().getReference("users")
-
+        val key = db.push().key ?: ""
         val user = User(email,number,name)
-        //val childPath = email.split("@")[0]
 
         db.child(key).setValue(user)
 
