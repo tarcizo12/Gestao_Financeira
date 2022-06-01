@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
@@ -52,21 +53,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun loginUser() {
         val email = mUserEmail.text.trim().toString()
         val password = mUserPassword.text.trim().toString()
-        val db = FirebaseDatabase.getInstance()
-        val childPath = email.split("@")[0]
-        val dbUserInfo = db.getReference("users").child(childPath)
-        val dbNameUser = dbUserInfo.get()
-        dbNameUser.addOnCompleteListener { it ->
-            if(it.isSuccessful){
-
-            }else{
-
-            }
-        }
-
-        Log.i("dbName", dbNameUser.toString())
-
-
+        
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 startActivity(Intent(this, UserActivity::class.java))
