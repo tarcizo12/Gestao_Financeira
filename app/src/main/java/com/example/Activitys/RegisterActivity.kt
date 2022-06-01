@@ -9,7 +9,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
@@ -34,7 +36,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         registerButtonConfirm = findViewById(R.id.registerButtonConfirm)
 
 
-        auth = FirebaseAuth.getInstance()
+        auth = Firebase.auth
 
 
     }
@@ -52,11 +54,12 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val confirmPassword = registerConfirmPassword.text.toString().trim()
 
         val validate = validateData(email, name, number, password, confirmPassword)
-        if(validate){ registerUser(email, name) }
+        if(validate){ registerUser(email, password) }
 
     }
 
     private fun registerUser(email: String,password: String) {
+
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -69,6 +72,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     registerEmail.error = "Email já cadastrado como usuário"
                 }
             }
+
     }
 
     private fun saveDataUsers(){
@@ -77,11 +81,12 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val number = registerMobileNumber.text.toString().trim()
 
 
-        val db = FirebaseDatabase.getInstance().getReference("Users")
+        val db = FirebaseDatabase.getInstance().getReference("users")
 
-        val user = User(name,number,email)
+        val user = User(email,number,name)
+        val childPath = email.split("@")[0]
 
-        db.child(name).setValue(user)
+        db.child(childPath).setValue(user)
 
     }
 

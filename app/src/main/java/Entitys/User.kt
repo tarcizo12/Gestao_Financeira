@@ -1,6 +1,6 @@
 package Entitys
 
-data class User(var name:  String,
+data class User(var email:  String,
                 var number: String,
-                var email: String,
+                var name: String,
                 var revenue: Int = 0)
