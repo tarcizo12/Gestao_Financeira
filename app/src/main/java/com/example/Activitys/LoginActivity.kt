@@ -53,11 +53,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun loginUser() {
         val email = mUserEmail.text.trim().toString()
         val password = mUserPassword.text.trim().toString()
-        
+
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 startActivity(Intent(this, UserActivity::class.java))
                 Toast.makeText(baseContext, "Seja bem vindo ", Toast.LENGTH_SHORT).show()
+                finish()
             } else {
             }
         }

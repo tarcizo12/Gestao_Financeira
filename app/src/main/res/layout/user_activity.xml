@@ -31,8 +31,9 @@
 
     <TextView
         android:id="@+id/userWelcome"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="25dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-black"
         android:text="Welcome!"
@@ -60,8 +61,8 @@
 
     <TextView
         android:id="@+id/userMoney"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="259dp"
+        android:layout_height="42dp"
         android:layout_marginTop="32dp"
         android:text="R$ "
         android:textColor="#000000"
