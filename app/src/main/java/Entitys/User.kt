@@ -4,5 +4,6 @@ data class User(
     var email: String,
     var number: String,
     var name: String,
-    var totalMoney: Int = 0
+    var totalMoney: Int = 0,
+
 )

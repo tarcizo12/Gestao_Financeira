@@ -21,8 +21,8 @@ class RevenueActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var revenueWelcome: TextView
     private lateinit var revenueRealizarReceita: TextView
     private lateinit var revenueValorEmReal: TextView
-    private lateinit var revenueDigiteOValor: EditText
     private lateinit var revenueTituloDaReceita: TextView
+    private lateinit var revenueDigiteOValor: EditText
     private lateinit var revenueDigiteOTitulo: EditText
     private lateinit var revenueRealizarBotao: Button
     private lateinit var dbInstance: FirebaseDatabase
@@ -32,12 +32,7 @@ class RevenueActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_revenue)
 
-        revenueProfilePicture = findViewById(R.id.revenueProfilePicture)
-        revenueWelcome = findViewById(R.id.revenueWelcome)
-        revenueRealizarReceita = findViewById(R.id.revenueRealizarReceitaTitulo)
-        revenueValorEmReal = findViewById(R.id.revenueValorEmReal)
         revenueDigiteOValor = findViewById(R.id.revenueDigiteOValor)
-        revenueTituloDaReceita = findViewById(R.id.revenueTituloDaReceita)
         revenueDigiteOTitulo = findViewById(R.id.revenueDigiteOTitulo)
         revenueRealizarBotao = findViewById(R.id.revenueRealizarBotao)
 
@@ -56,23 +51,25 @@ class RevenueActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setRevenue(value: String,title: String) {
-        val userRefs = dbInstance.getReference("/users")
+        val userRefs = dbInstance.getReference("users")
         userRefs
             .orderByChild("email").equalTo(auth.currentUser?.email)
             .addChildEventListener(object: ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     val userId = snapshot.key!!
                     val atualyUserMoney = snapshot.child("totalMoney").value.toString().toInt()
-                    val setNewMoneyUser =  value.toInt()+ atualyUserMoney
+                    val setNewMoneyUser =  atualyUserMoney + value.toInt()
 
-                    val revenueRef = userRefs.child(userId).child("revenues")
+                    val revenueRef = userRefs.child(userId).child("listRevenues")
                     val revenueId = revenueRef.push().key ?: ""
                     val revenue = Revenue(revenueId,title,value)
 
                         revenueRef.child(revenueId).setValue(revenue).addOnCompleteListener { task ->
                             if (task.isSuccessful){
                                 userRefs.child(userId).child("totalMoney").setValue(setNewMoneyUser)
-                                Toast.makeText(baseContext, "Despesa cadastrada com sucesso!!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(baseContext, "Receita cadastrada com sucesso!!", Toast.LENGTH_SHORT).show()
+                                revenueDigiteOTitulo.text.clear()
+                                revenueDigiteOValor.text.clear()
                             }
                         }
 

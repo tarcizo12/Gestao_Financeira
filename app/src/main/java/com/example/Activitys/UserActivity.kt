@@ -47,8 +47,13 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
 
         userButtonRegisterRecipe = findViewById(R.id.userButtonRegisterRecipe)
         userButtonRegisterRecipe.setOnClickListener(this)
+
         userButtonRegisterExpense = findViewById(R.id.userButtonRegisterExpense)
+        userButtonRegisterExpense.setOnClickListener(this)
+
+
         userButtonRecipesAndExpenses = findViewById(R.id.userButtonRecipesAndExpenses)
+        userButtonRecipesAndExpenses.setOnClickListener(this)
 
         userTextRegisterRecipe = findViewById(R.id.userTextRegisterRecipe)
         userTextRegisterExpense = findViewById(R.id.userButtonRegisterExpense)
@@ -95,18 +100,11 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(button: View?) {
         when(button?.id){
-            R.id.userButtonRegisterRecipe -> registerRevenue()
-            R.id.userButtonRecipesAndExpenses -> registerExpense()
+            R.id.userButtonRegisterRecipe -> startActivity(Intent(this, RevenueActivity::class.java))
+            R.id.userButtonRegisterExpense -> startActivity(Intent(this,ExpenseActivity::class.java))
+         // R.id.userButtonRecipesAndExpenses -> startActivity(Intent(this, ::class.java))
         }
     }
 
-    private fun registerExpense() {
-        val it = Intent(this,ExpenseActivity::class.java)
-        startActivity(it)
-    }
 
-    private fun registerRevenue() {
-        val it = Intent(this, RevenueActivity::class.java)
-        startActivity(it)
-    }
 }
