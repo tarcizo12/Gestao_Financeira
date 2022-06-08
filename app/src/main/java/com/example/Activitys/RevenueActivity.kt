@@ -1,13 +1,12 @@
 package com.example.Activitys
 
+import Entitys.Revenue
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
@@ -66,7 +65,16 @@ class RevenueActivity : AppCompatActivity(), View.OnClickListener {
                     val atualyUserMoney = snapshot.child("totalMoney").value.toString().toInt()
                     val setNewMoneyUser =  value.toInt()+ atualyUserMoney
 
-                    userRefs.child(userId).child("totalMoney").setValue(setNewMoneyUser)
+                    val revenueRef = userRefs.child(userId).child("revenues")
+                    val revenueId = revenueRef.push().key ?: ""
+                    val revenue = Revenue(revenueId,title,value)
+
+                        revenueRef.child(revenueId).setValue(revenue).addOnCompleteListener { task ->
+                            if (task.isSuccessful){
+                                userRefs.child(userId).child("totalMoney").setValue(setNewMoneyUser)
+                                Toast.makeText(baseContext, "Despesa cadastrada com sucesso!!", Toast.LENGTH_SHORT).show()
+                            }
+                        }
 
                 }
 
