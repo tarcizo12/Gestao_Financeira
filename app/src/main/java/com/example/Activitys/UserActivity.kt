@@ -1,5 +1,6 @@
 package com.example.Activitys
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -31,7 +32,6 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var userTextDispensesAndExpenses: TextView
     private lateinit var dbInstance: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
-    private lateinit var userId: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +70,7 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
                 .orderByChild("email").equalTo(auth.currentUser?.email)
                 .addChildEventListener(object: ChildEventListener{
                     override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                        userId = snapshot.key!!
+
                         val setNameUser = snapshot.child("name").value.toString()
                         val setMoneyUser = snapshot.child("totalMoney").value.toString()
 
@@ -95,16 +95,18 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(button: View?) {
         when(button?.id){
-            R.id.userButtonRegisterRecipe -> registerRecipe(this.userId)
-            R.id.userButtonRecipesAndExpenses -> registerExpense(this.userId)
+            R.id.userButtonRegisterRecipe -> registerRevenue()
+            R.id.userButtonRecipesAndExpenses -> registerExpense()
         }
     }
 
-    private fun registerExpense(userId: String) {
-
+    private fun registerExpense() {
+        val it = Intent(this,ExpenseActivity::class.java)
+        startActivity(it)
     }
 
-    private fun registerRecipe(userId: String) {
-
+    private fun registerRevenue() {
+        val it = Intent(this, RevenueActivity::class.java)
+        startActivity(it)
     }
 }
