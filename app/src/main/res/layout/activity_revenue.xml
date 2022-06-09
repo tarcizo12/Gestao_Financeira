@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF"
     android:foregroundTint="#FFFFFF"
     tools:context=".RevenueActivity">
@@ -69,10 +70,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="115dp"
         android:layout_marginEnd="116dp"
+        android:digits="0123456789,"
         android:ems="10"
         android:hint="Digite o valor"
         android:inputType="numberDecimal"
-        android:digits="0123456789,"
+        android:textColorHint="#878787"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/revenueValorEmReal"
@@ -85,6 +87,7 @@
         android:ems="10"
         android:hint="Digite a receita"
         android:inputType="textPersonName"
+        android:textColorHint="#878787"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,35 +98,37 @@
         android:id="@+id/revenueValorEmReal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="24dp"
         android:text="Valor em Real"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/revenueRealizarReceitaTitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/revenueDigiteOTitulo" />
 
     <TextView
         android:id="@+id/revenueTituloDaReceita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="40dp"
         android:text="Título da receita"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/revenueDigiteOValor" />
+        app:layout_constraintTop_toBottomOf="@+id/revenueRealizarReceitaTitulo" />
 
     <Button
         android:id="@+id/revenueRealizarBotao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#03A9F4"
         android:text="Realizar"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/revenueDigiteOTitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/revenueDigiteOValor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

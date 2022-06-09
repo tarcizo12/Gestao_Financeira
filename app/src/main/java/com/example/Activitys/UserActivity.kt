@@ -108,7 +108,7 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
         when(button?.id){
             R.id.userButtonRegisterRecipe -> startActivity(Intent(this, RevenueActivity::class.java))
             R.id.userButtonRegisterExpense -> startActivity(Intent(this,ExpenseActivity::class.java))
-         // R.id.userButtonRecipesAndExpenses -> startActivity(Intent(this, ::class.java))
+            R.id.userButtonRecipesAndExpenses -> startActivity(Intent(this, HistoryActivity::class.java))
         }
     }
 

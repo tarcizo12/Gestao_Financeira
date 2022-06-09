@@ -1,5 +1,7 @@
 package com.example.Activitys
 
+import Entitys.HistoryRepository
+import adapter.HistoryAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,8 +16,8 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history)
 
         historyList = findViewById(R.id.historyList)
-        //historyList.layoutManager = LinearLayoutManager(this, ) //listagem linear
-        //historyList.adapter =
+        historyList.layoutManager = LinearLayoutManager(this) //listagem linear
+        historyList.adapter = HistoryAdapter(HistoryRepository.findAll())
 
     }
 }

@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toBottomOf="@+id/viewLogin"
-        app:layout_constraintVertical_bias="0.381"
+        app:layout_constraintVertical_bias="0.634"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -96,23 +96,21 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.58" />
+        app:layout_constraintVertical_bias="0.694" />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="323dp"
         android:layout_height="68dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="112dp"
         android:background="#00FBFBFB"
         android:text="Don't have an account? Register here!!"
         android:textColor="#03A9F4"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
