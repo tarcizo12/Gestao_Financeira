@@ -1,12 +1,15 @@
 package com.example.Activitys
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.icu.number.Precision
 import android.os.Bundle
+import android.util.Log
+
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
@@ -14,6 +17,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import java.lang.Math.round
+
 
 class UserActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var userView: View
@@ -77,10 +82,11 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
                     override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
 
                         val setNameUser = snapshot.child("name").value.toString()
-                        val setMoneyUser = snapshot.child("totalMoney").value.toString()
+                        var setMoneyUser = snapshot.child("totalMoney").value.toString().toDouble()
+                        val formattedNumber = String.format("%.2f", setMoneyUser)
 
                         userWelcome.text =  "Seja bem vindo $setNameUser"
-                        userMoney.text =  "R$ $setMoneyUser"
+                        userMoney.text =  "R$ $formattedNumber"
 
                     }
 

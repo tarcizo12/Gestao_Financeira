@@ -14,8 +14,8 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history)
 
         historyList = findViewById(R.id.historyList)
-        historyList.layoutManager = LinearLayoutManager(this, ) //listagem linear
-        historyList.adapter =
+        //historyList.layoutManager = LinearLayoutManager(this, ) //listagem linear
+        //historyList.adapter =
 
     }
 }

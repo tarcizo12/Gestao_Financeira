@@ -1,6 +1,7 @@
 package com.example.Activitys
 
 import Entitys.Revenue
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -36,6 +37,7 @@ class RevenueActivity : AppCompatActivity(), View.OnClickListener {
         revenueDigiteOTitulo = findViewById(R.id.revenueDigiteOTitulo)
         revenueRealizarBotao = findViewById(R.id.revenueRealizarBotao)
 
+        revenueDigiteOValor.setRawInputType(Configuration.KEYBOARD_12KEY)
         revenueRealizarBotao.setOnClickListener(this)
 
         dbInstance = FirebaseDatabase.getInstance()
@@ -57,8 +59,9 @@ class RevenueActivity : AppCompatActivity(), View.OnClickListener {
             .addChildEventListener(object: ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     val userId = snapshot.key!!
-                    val atualyUserMoney = snapshot.child("totalMoney").value.toString().toInt()
-                    val setNewMoneyUser =  atualyUserMoney + value.toInt()
+
+                    val atualyUserMoney = snapshot.child("totalMoney").value.toString().toDouble()
+                    val setNewMoneyUser =  atualyUserMoney + value.replace(',','.').toDouble()
 
                     val revenueRef = userRefs.child(userId).child("listRevenues")
                     val revenueId = revenueRef.push().key ?: ""

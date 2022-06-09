@@ -26,6 +26,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var registerConfirmPassword: EditText
     private lateinit var registerButtonConfirm: Button
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
 
         auth = Firebase.auth
-
+        db = FirebaseDatabase.getInstance()
 
     }
 
@@ -82,11 +83,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val email = registerEmail.text.toString().trim()
         val name = registerName.text.toString().trim()
         val number = registerMobileNumber.text.toString().trim()
-        val db = FirebaseDatabase.getInstance().getReference("users")
-        val key = db.push().key ?: ""
+        val dbRef = db.getReference("users")
+        val key = dbRef.push().key ?: ""
         val user = User(email,number,name)
 
-        db.child(key).setValue(user)
+        dbRef.child(key).setValue(user)
 
     }
 
