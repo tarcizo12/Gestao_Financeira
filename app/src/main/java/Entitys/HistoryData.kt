@@ -1,8 +1,8 @@
 package Entitys
 
 data class HistoryData(
-    val id:Int,
+    val id:String,
     val name:String,
-    val text:String,
-    val value:Double
+    val value:String,
+    val typeValue: Boolean
 )

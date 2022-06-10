@@ -4,10 +4,8 @@ import Entitys.Revenue
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
@@ -34,7 +32,7 @@ class RevenueActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_revenue)
 
         revenueDigiteOValor = findViewById(R.id.revenueDigiteOValor)
-        revenueDigiteOTitulo = findViewById(R.id.revenueDigiteOTitulo)
+        revenueDigiteOTitulo = findViewById(R.id.expenseDigiteOTitulo)
         revenueRealizarBotao = findViewById(R.id.revenueRealizarBotao)
 
         revenueDigiteOValor.setRawInputType(Configuration.KEYBOARD_12KEY)
@@ -65,7 +63,7 @@ class RevenueActivity : AppCompatActivity(), View.OnClickListener {
 
                     val revenueRef = userRefs.child(userId).child("listRevenues")
                     val revenueId = revenueRef.push().key ?: ""
-                    val revenue = Revenue(revenueId,title,value)
+                    val revenue = Revenue(revenueId,title,value,true)
 
                         revenueRef.child(revenueId).setValue(revenue).addOnCompleteListener { task ->
                             if (task.isSuccessful){

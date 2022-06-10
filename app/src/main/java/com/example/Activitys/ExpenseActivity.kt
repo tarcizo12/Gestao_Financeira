@@ -32,7 +32,7 @@ class ExpenseActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_expense)
 
         expenseDigiteOValor = findViewById(R.id.expenseDigiteOValor)
-        expenseDigiteOTitulo = findViewById(R.id.revenueDigiteOTitulo)
+        expenseDigiteOTitulo = findViewById(R.id.expenseDigiteOTitulo)
         expenseRealizarBotao = findViewById(R.id.expenseRealizarBotao)
 
         expenseDigiteOValor.setRawInputType(Configuration.KEYBOARD_12KEY)
@@ -44,7 +44,7 @@ class ExpenseActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         val value = this.expenseDigiteOValor.text.toString()
-        val title = this.expenseDigiteOValor.text.toString()
+        val title = this.expenseDigiteOTitulo.text.toString()
 
         setRevenue(value, title)
     }
@@ -61,7 +61,7 @@ class ExpenseActivity : AppCompatActivity(), View.OnClickListener {
 
                     val expenseRef = userRefs.child(userId).child("listExpenses")
                     val expenseId = expenseRef.push().key ?: ""
-                    val expense = Revenue(expenseId,title,value)
+                    val expense = Revenue(expenseId,title,value,false)
 
                     expenseRef.child(expenseId).setValue(expense).addOnCompleteListener { task ->
                         if (task.isSuccessful){
