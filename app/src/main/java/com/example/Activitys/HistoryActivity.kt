@@ -1,10 +1,12 @@
 package com.example.Activitys
 
 import Entitys.HistoryData
+import Entitys.Revenue
 import Entitys.User
 import adapter.HistoryAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -49,16 +51,31 @@ class HistoryActivity : AppCompatActivity() {
             .equalTo(auth.currentUser?.email)
             .addValueEventListener(object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+
                     for(children in snapshot.children){
                         val user = children.getValue(User::class.java)
                         val listOfRevenues = user?.listRevenues?.values?.toList()
                         val listOfExpense = user?.listExpenses?.values?.toList()
+                        val lastFiveRevenue = mutableListOf<HistoryData>()
+                        val lastFiveExpense = mutableListOf<HistoryData>()
 
-                        listOfRevenues!!.forEach {
-                            findAll.add(HistoryData(it.id,it.name,it.value,it.typeValue))
-                        }
+                            Log.i("teste",listOfRevenues.toString())
+
                         listOfExpense!!.forEach {
-                            findAll.add(HistoryData(it.id,it.name,it.value,it.typeValue))
+                            if (lastFiveExpense.size >= 5){
+                                lastFiveExpense.removeAt(0)
+                                lastFiveExpense.add(HistoryData(it.id,it.name,it.value,it.typeValue))
+
+                            }else{
+                                lastFiveExpense.add(HistoryData(it.id,it.name,it.value,it.typeValue))
+                            }
+                        }
+
+                        lastFiveRevenue.forEach{revenue ->
+                            findAll.add(HistoryData(revenue.id,revenue.name,revenue.value,revenue.typeValue))
+                        }
+                        lastFiveExpense.forEach{expense ->
+                            findAll.add(HistoryData(expense.id,expense.name,expense.value,expense.typeValue))
                         }
 
                         historyList.adapter = HistoryAdapter(findAll)

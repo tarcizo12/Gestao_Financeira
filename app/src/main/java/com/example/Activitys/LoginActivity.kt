@@ -78,6 +78,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(baseContext, "Seja bem vindo ", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
+
                     Toast.makeText(baseContext, "Por favor, verificar credenciais", Toast.LENGTH_SHORT).show()
                 }
             }

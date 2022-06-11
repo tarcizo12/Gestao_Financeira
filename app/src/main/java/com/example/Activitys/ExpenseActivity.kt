@@ -1,5 +1,6 @@
 package com.example.Activitys
 
+import Entitys.Expense
 import Entitys.Revenue
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
@@ -58,10 +59,11 @@ class ExpenseActivity : AppCompatActivity(), View.OnClickListener {
                     val userId = snapshot.key!!
                     val atualyUserMoney = snapshot.child("totalMoney").value.toString().toDouble()
                     val setNewMoneyUser =  atualyUserMoney - value.replace(',','.').toDouble()
+                    val atualUseExpense = snapshot.child("totalExpense").value.toString().toInt()
 
                     val expenseRef = userRefs.child(userId).child("listExpenses")
                     val expenseId = expenseRef.push().key ?: ""
-                    val expense = Revenue(expenseId,title,value,false)
+                    val expense = Expense((atualUseExpense+1),expenseId,title,value,false)
 
                     expenseRef.child(expenseId).setValue(expense).addOnCompleteListener { task ->
                         if (task.isSuccessful){

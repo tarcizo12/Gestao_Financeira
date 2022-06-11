@@ -61,8 +61,10 @@ class RevenueActivity : AppCompatActivity(), View.OnClickListener {
                     val atualyUserMoney = snapshot.child("totalMoney").value.toString().toDouble()
                     val setNewMoneyUser =  atualyUserMoney + value.replace(',','.').toDouble()
 
+
                     val revenueRef = userRefs.child(userId).child("listRevenues")
                     val revenueId = revenueRef.push().key ?: ""
+
                     val revenue = Revenue(revenueId,title,value,true)
 
                         revenueRef.child(revenueId).setValue(revenue).addOnCompleteListener { task ->
