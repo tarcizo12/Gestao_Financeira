@@ -56,25 +56,11 @@ class HistoryActivity : AppCompatActivity() {
                         val user = children.getValue(User::class.java)
                         val listOfRevenues = user?.listRevenues?.values?.toList()
                         val listOfExpense = user?.listExpenses?.values?.toList()
-                        val lastFiveRevenue = mutableListOf<HistoryData>()
-                        val lastFiveExpense = mutableListOf<HistoryData>()
 
-                            Log.i("teste",listOfRevenues.toString())
-
-                        listOfExpense!!.forEach {
-                            if (lastFiveExpense.size >= 5){
-                                lastFiveExpense.removeAt(0)
-                                lastFiveExpense.add(HistoryData(it.id,it.name,it.value,it.typeValue))
-
-                            }else{
-                                lastFiveExpense.add(HistoryData(it.id,it.name,it.value,it.typeValue))
-                            }
-                        }
-
-                        lastFiveRevenue.forEach{revenue ->
+                        listOfRevenues!!.forEach {revenue ->
                             findAll.add(HistoryData(revenue.id,revenue.name,revenue.value,revenue.typeValue))
                         }
-                        lastFiveExpense.forEach{expense ->
+                        listOfExpense!!.forEach {expense ->
                             findAll.add(HistoryData(expense.id,expense.name,expense.value,expense.typeValue))
                         }
 

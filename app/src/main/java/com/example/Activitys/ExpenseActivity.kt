@@ -57,13 +57,13 @@ class ExpenseActivity : AppCompatActivity(), View.OnClickListener {
             .addChildEventListener(object: ChildEventListener {
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                     val userId = snapshot.key!!
+
                     val atualyUserMoney = snapshot.child("totalMoney").value.toString().toDouble()
                     val setNewMoneyUser =  atualyUserMoney - value.replace(',','.').toDouble()
-                    val atualUseExpense = snapshot.child("totalExpense").value.toString().toInt()
 
                     val expenseRef = userRefs.child(userId).child("listExpenses")
                     val expenseId = expenseRef.push().key ?: ""
-                    val expense = Expense((atualUseExpense+1),expenseId,title,value,false)
+                    val expense = Expense(expenseId,title,value,false)
 
                     expenseRef.child(expenseId).setValue(expense).addOnCompleteListener { task ->
                         if (task.isSuccessful){
